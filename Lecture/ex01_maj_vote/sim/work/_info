@@ -1,0 +1,59 @@
+m255
+K4
+z2
+!s11f vlog 2020.1 2020.02, Feb 28 2020
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+dC:/Users/stefa/OneDrive - FH Vorarlberg/Semester_5/Hardwarebeschreibungssprachen/ex01_maj_vote/sim
+vmaj_vote
+Z0 DXx6 sv_std 3 std 0 22 VYECXdT12H8WgbUP_5Y6:3
+!s110 1634236043
+!i10b 1
+!s100 GcHJ6f3d:Z7D_7fii3B]R1
+Z1 !s11b Dg1SIo80bB@j0V0VzS_@n1
+IznklH^0_RCF^]>cbigzPL3
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+S1
+Z3 dC:/Users/stefa/downloads/ex01_maj_vote/sim
+w1633604200
+8../src/maj_vote.sv
+F../src/maj_vote.sv
+!i122 6
+L0 8 38
+Z4 OV;L;2020.1;71
+r1
+!s85 0
+31
+!s108 1634236043.000000
+!s107 ../src/maj_vote.sv|
+!s90 -reportprogress|300|../src/maj_vote.sv|
+!i113 1
+Z5 tCvgOpt 0
+vtb_maj_vote
+R0
+!s110 1634236044
+!i10b 1
+!s100 69:g5Pz3l]C;ckVfI<`ED0
+R1
+IIcT@keLl8<<RaFN^i?>FI1
+R2
+S1
+R3
+w1634200875
+8tb_maj_vote.sv
+Ftb_maj_vote.sv
+!i122 7
+L0 8 62
+R4
+r1
+!s85 0
+31
+!s108 1634236044.000000
+!s107 tb_maj_vote.sv|
+!s90 -reportprogress|300|tb_maj_vote.sv|
+!i113 1
+R5

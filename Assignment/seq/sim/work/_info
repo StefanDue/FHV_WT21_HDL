@@ -1,0 +1,155 @@
+m255
+K4
+z2
+!s11f vlog 2020.1 2020.02, Feb 28 2020
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/Users/stefa/downloads/hdl/seq/sim
+vdreg
+Z1 DXx6 sv_std 3 std 0 22 VYECXdT12H8WgbUP_5Y6:3
+!s110 1636840416
+!i10b 1
+!s100 d>WIFFA4X_JMX:z6eh<l=3
+Z2 !s11b Dg1SIo80bB@j0V0VzS_@n1
+IUZHdP`96_N:80Dh6HSCOU0
+Z3 VDg1SIo80bB@j0V0VzS_@n1
+S1
+Z4 dC:/Users/stefa/downloads/hdl/assignment/seq/sim
+w1636147986
+8../src/dreg.sv
+F../src/dreg.sv
+!i122 306
+L0 8 47
+Z5 OV;L;2020.1;71
+r1
+!s85 0
+31
+!s108 1636840416.000000
+!s107 ../src/dreg.sv|
+!s90 -reportprogress|300|../src/dreg.sv|
+!i113 1
+Z6 tCvgOpt 0
+vpcount
+R1
+!s110 1636564442
+!i10b 1
+!s100 1FC=>f6MnaOzDBO_S7a5a3
+R2
+I7CJjJW58Y5eaj49;I]_@50
+R3
+S1
+R0
+w1636153446
+8../src/pcount.sv
+F../src/pcount.sv
+!i122 296
+L0 8 51
+R5
+r1
+!s85 0
+31
+Z7 !s108 1636564442.000000
+!s107 ../src/pcount.sv|
+!s90 -reportprogress|300|../src/pcount.sv|
+!i113 1
+R6
+vram16k_verilog
+R1
+Z8 !s110 1636567594
+!i10b 1
+!s100 7_DK@^3DJ]ZQmeLfT@>DF0
+R2
+IF3[g>GPZ:Y4DXHH<=`9oS2
+R3
+S1
+R0
+w1636540835
+8../src/ram16k_verilog.sv
+F../src/ram16k_verilog.sv
+!i122 304
+L0 8 23
+R5
+r1
+!s85 0
+31
+Z9 !s108 1636567594.000000
+!s107 ../src/ram16k_verilog.sv|
+!s90 -reportprogress|300|../src/ram16k_verilog.sv|
+!i113 1
+R6
+vtb_dreg
+R1
+!s110 1636840417
+!i10b 1
+!s100 VN9K]WP4[h2]BkBbTZP@I0
+R2
+IV77;VJn]hK6JiAmV`A[TI3
+R3
+S1
+R4
+w1636564654
+8tb_dreg.sv
+Ftb_dreg.sv
+!i122 307
+L0 8 141
+R5
+r1
+!s85 0
+31
+!s108 1636840417.000000
+!s107 tb_dreg.sv|
+!s90 -reportprogress|300|tb_dreg.sv|
+!i113 1
+R6
+vtb_pcount
+R1
+!s110 1636564443
+!i10b 1
+!s100 NUn9>@_Gch9F8jn7m3aIL3
+R2
+I?_4l@^[h_O:>JZ?`B8EB`1
+R3
+S1
+R0
+w1636549611
+8tb_pcount.sv
+Ftb_pcount.sv
+!i122 297
+L0 8 142
+R5
+r1
+!s85 0
+31
+R7
+!s107 tb_pcount.sv|
+!s90 -reportprogress|300|tb_pcount.sv|
+!i113 1
+R6
+vtb_ram16k_verilog
+R1
+R8
+!i10b 1
+!s100 0824P[AG;zd9@f@C_k7oC1
+R2
+IMnhaFdem0J2fb68ZlFEZo0
+R3
+S1
+R0
+w1636567586
+8tb_ram16k_verilog.sv
+Ftb_ram16k_verilog.sv
+!i122 305
+L0 8 213
+R5
+r1
+!s85 0
+31
+R9
+!s107 tb_ram16k_verilog.sv|
+!s90 -reportprogress|300|tb_ram16k_verilog.sv|
+!i113 1
+R6

@@ -1,0 +1,59 @@
+m255
+K4
+z2
+!s11f vlog 2020.1 2020.02, Feb 28 2020
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+dC:/Users/stefa/downloads/hdL/alu/sim
+valu
+Z0 DXx6 sv_std 3 std 0 22 VYECXdT12H8WgbUP_5Y6:3
+Z1 !s110 1635979585
+!i10b 1
+!s100 X^SOM3WdB[Io@DYHg<97;1
+Z2 !s11b Dg1SIo80bB@j0V0VzS_@n1
+I=W2B[m]Xk@6Ba]J2G[cRP0
+Z3 VDg1SIo80bB@j0V0VzS_@n1
+S1
+Z4 dC:/Users/stefa/downloads/hdl/alu/sim
+w1635855919
+8../src/alu.sv
+F../src/alu.sv
+!i122 425
+L0 8 92
+Z5 OV;L;2020.1;71
+r1
+!s85 0
+31
+Z6 !s108 1635979585.000000
+!s107 ../src/alu.sv|
+!s90 -reportprogress|300|../src/alu.sv|
+!i113 1
+Z7 tCvgOpt 0
+vtb_alu
+R0
+R1
+!i10b 1
+!s100 bgCF@PKAZ^IZA7e8IEWZL2
+R2
+IHCnTCk]kQ5I[9a`eFA27@1
+R3
+S1
+R4
+w1635979536
+8tb_alu.sv
+Ftb_alu.sv
+!i122 426
+L0 8 398
+R5
+r1
+!s85 0
+31
+R6
+!s107 tb_alu.sv|
+!s90 -reportprogress|300|tb_alu.sv|
+!i113 1
+R7
