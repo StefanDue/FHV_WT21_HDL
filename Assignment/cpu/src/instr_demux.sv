@@ -10,68 +10,64 @@ module instr_demux
     parameter DW = 16
     )
     (
-    input   logic [DW-1:0]      instr;
+    input   logic [DW-1:0]      instr,
 
-    output  logic               instr_type;
-    output  logic [DW-1:0]      instr_v;
-    output  logic               cmd_a;
-    output  logic               cmd_c1;
-    output  logic               cmd_c2;
-    output  logic               cmd_c3;
-    output  logic               cmd_c4;
-    output  logic               cmd_c5;
-    output  logic               cmd_c6;
-    output  logic               cmd_d1;
-    output  logic               cmd_d2;
-    output  logic               cmd_d3;
-    output  logic               cmd_j1;
-    output  logic               cmd_j2;
-    output  logic               cmd_j3;
+    output  logic               instr_type,
+    output  logic [DW-1:0]      instr_v,
+    output  logic               cmd_a,
+    output  logic               cmd_c1,
+    output  logic               cmd_c2,
+    output  logic               cmd_c3,
+    output  logic               cmd_c4,
+    output  logic               cmd_c5,
+    output  logic               cmd_c6,
+    output  logic               cmd_d1,
+    output  logic               cmd_d2,
+    output  logic               cmd_d3,
+    output  logic               cmd_j1,
+    output  logic               cmd_j2,
+    output  logic               cmd_j3
     );
 
-
-    // Create internal buses for the outputs
-    logic [5:0]     c;
-    logic [2:0]     d;
-    logic [2:0]     j;
-
-    assign c = {cmd_c1, cmd_c2, cmd_c3, cmd_c4, cmd_c5, cmd_c6};
-    assign d = {cmd_d1, cmd_d2, cmd_d3};
-    assign j = {cmd_j1, cmd_j2, cmd_j3};
-
-    
-    
 
 
     // Behaviour description for the instruction demultiplexer
     always_comb begin : instruction_demux
+        instr_type = instr[DW-1:0];
+        instr_v         = instr;
+        instr_v[DW-1]   = 1'b0;
 
-    // The instr_type is set by the MSB of the instr_demux input instr
-       if(instr[DW-1] == 1'b0) begin
-           instr_type   = 1'b0;
-           instr_v      = '
-       end
-       else if() begin
-           instr_type   = 1'b1;
-           cmd_a        = 1'b0;
-           c            = '1;
-           d            = 3'b010;
-           j            = '0;
-       end
-       else if() begin
-           instr_type   = 1'b1;
-           cmd_a        = 1'b0;
-           c            = 6'b000010;
-           d            = 3'b010;
-           j            = '0;
-       end
-       else if() begin
-           instr_type   = 1'b1;
-           cmd_a        = 1'b0;
-           c            = 6'b110111;
-           d            = 3'b001;
-           j            = '0;
-       end
+        if(instr_type == 1'b0) begin
+            //instr_v = '0;
+            cmd_a           = 1'b0;
+            cmd_c1          = 1'b0;
+            cmd_c2          = 1'b0;
+            cmd_c3          = 1'b0;
+            cmd_c4          = 1'b0;
+            cmd_c5          = 1'b0;
+            cmd_c6          = 1'b0;
+            cmd_d1          = 1'b0;
+            cmd_d2          = 1'b0;
+            cmd_d3          = 1'b0;
+            cmd_j1          = 1'b0;
+            cmd_j2          = 1'b0;
+            cmd_j3          = 1'b0;
+        end 
+        else if(instr_type == 1'b1) begin
+            cmd_a           = instr[DW-4];
+            cmd_c1          = instr[DW-5];
+            cmd_c2          = instr[DW-6];
+            cmd_c3          = instr[DW-7];
+            cmd_c4          = instr[DW-8];
+            cmd_c5          = instr[DW-9];
+            cmd_c6          = instr[DW-10];
+            cmd_d1          = instr[DW-11];
+            cmd_d2          = instr[DW-12];
+            cmd_d3          = instr[DW-13];
+            cmd_j1          = instr[DW-14];
+            cmd_j2          = instr[DW-15];
+            cmd_j3          = instr[DW-16];
+        end
     end
 
 endmodule
