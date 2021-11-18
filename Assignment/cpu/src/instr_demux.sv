@@ -33,7 +33,7 @@ module instr_demux
 
     // Behaviour description for the instruction demultiplexer
     always_comb begin : instruction_demux
-        instr_type = instr[DW-1:0];
+        instr_type      = instr[DW-1:0];
         instr_v         = instr;
         instr_v[DW-1]   = 1'b0;
 
