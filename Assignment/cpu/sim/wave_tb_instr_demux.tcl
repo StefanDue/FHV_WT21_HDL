@@ -8,8 +8,8 @@ add wave -noupdate /tb_instr_demux/c
 add wave -noupdate /tb_instr_demux/d
 add wave -noupdate /tb_instr_demux/j
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {0 ps} 0}
-quietly wave cursor active 0
+WaveRestoreCursors {{Cursor 1} {335780 ps} 0}
+quietly wave cursor active 1
 configure wave -namecolwidth 192
 configure wave -valuecolwidth 116
 configure wave -justifyvalue left
@@ -24,4 +24,4 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits ps
 update
-WaveRestoreZoom {0 ps} {943 ps}
+WaveRestoreZoom {0 ps} {630 ns}

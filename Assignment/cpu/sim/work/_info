@@ -11,49 +11,49 @@ cModel Technology
 Z0 dC:/Users/stefa/downloads/fhV/hardwareDescriptionLanguage/fHV_WT21_HDL/assignment/cpu/sim
 vinstr_demux
 Z1 DXx6 sv_std 3 std 0 22 VYECXdT12H8WgbUP_5Y6:3
-Z2 !s110 1637274627
+!s110 1637359305
 !i10b 1
-!s100 Ij=@`LCVPc4jW;dUWoT3d0
-Z3 !s11b Dg1SIo80bB@j0V0VzS_@n1
-IUcYQ1G1Xd3[?c4hnd`E>O1
-Z4 VDg1SIo80bB@j0V0VzS_@n1
+!s100 na:SKDHN^P>jccJ;ekSmA2
+Z2 !s11b Dg1SIo80bB@j0V0VzS_@n1
+IV=H@TWn4IElC1O`o=aCHA1
+Z3 VDg1SIo80bB@j0V0VzS_@n1
 S1
 R0
-w1637271936
+w1637358931
 8../src/instr_demux.sv
 F../src/instr_demux.sv
-!i122 37
+!i122 62
 L0 8 66
-Z5 OV;L;2020.1;71
+Z4 OV;L;2020.1;71
 r1
 !s85 0
 31
-Z6 !s108 1637274627.000000
+!s108 1637359305.000000
 !s107 ../src/instr_demux.sv|
 !s90 -reportprogress|300|../src/instr_demux.sv|
 !i113 1
-Z7 tCvgOpt 0
+Z5 tCvgOpt 0
 vtb_instr_demux
 R1
-R2
+!s110 1637359306
 !i10b 1
-!s100 3f`DjCo4LZI_9WHDAl2TK0
+!s100 fP@KHbTJ50JGOh<j^oEzl1
+R2
+I?TL[67@j:^T72NH4gJ`Vl2
 R3
-IP3Y^k4M4CS4^YTUJVnXV50
-R4
 S1
 R0
-w1637274622
+w1637359295
 8tb_instr_demux.sv
 Ftb_instr_demux.sv
-!i122 38
-L0 8 111
-R5
+!i122 63
+L0 8 144
+R4
 r1
 !s85 0
 31
-R6
+!s108 1637359306.000000
 !s107 tb_instr_demux.sv|
 !s90 -reportprogress|300|tb_instr_demux.sv|
 !i113 1
-R7
+R5
