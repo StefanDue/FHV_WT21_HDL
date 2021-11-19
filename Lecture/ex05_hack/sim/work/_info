@@ -1,0 +1,57 @@
+m255
+K4
+z2
+!s11f vlog 2020.1 2020.02, Feb 28 2020
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/Users/stefa/downloads/fhV/hardwareDescriptionLanguage/fhV_WT21_HDL/lecture/ex05_hack/sim
+vrom32k
+Z1 !s110 1637321240
+!i10b 1
+!s100 YiWXBY7PYOWQ6?HE;lX:D1
+Z2 !s11b Dg1SIo80bB@j0V0VzS_@n1
+I`=[<X[F8bDnV@1>M^2=In2
+Z3 VDg1SIo80bB@j0V0VzS_@n1
+R0
+w1637316501
+8../ip/rom32k.v
+F../ip/rom32k.v
+!i122 20
+L0 40 61
+Z4 OV;L;2020.1;71
+r1
+!s85 0
+31
+Z5 !s108 1637321240.000000
+!s107 ../ip/rom32k.v|
+!s90 -reportprogress|300|../ip/rom32k.v|
+!i113 1
+Z6 tCvgOpt 0
+vtb_rom32k
+DXx6 sv_std 3 std 0 22 VYECXdT12H8WgbUP_5Y6:3
+R1
+!i10b 1
+!s100 ZaS2InW?lN1nfNo8d2omc1
+R2
+I8PfW@VT38gXKaeCYJJF6M2
+R3
+S1
+R0
+w1637321233
+8tb_rom32k.sv
+Ftb_rom32k.sv
+!i122 21
+L0 11 40
+R4
+r1
+!s85 0
+31
+R5
+!s107 tb_rom32k.sv|
+!s90 -reportprogress|300|tb_rom32k.sv|
+!i113 1
+R6
