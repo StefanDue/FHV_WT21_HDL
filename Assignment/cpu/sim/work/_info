@@ -9,46 +9,190 @@ z2
 !i10f 100
 cModel Technology
 dC:/Users/stefa/downloads/fhV/hardwareDescriptionLanguage/fHV_WT21_HDL/assignment/cpu/sim
-vinstr_demux
+valu
 Z0 DXx6 sv_std 3 std 0 22 VYECXdT12H8WgbUP_5Y6:3
-Z1 !s110 1637404629
+Z1 !s110 1637445529
 !i10b 1
-!s100 na:SKDHN^P>jccJ;ekSmA2
+!s100 X^SOM3WdB[Io@DYHg<97;1
 Z2 !s11b Dg1SIo80bB@j0V0VzS_@n1
-IV=H@TWn4IElC1O`o=aCHA1
+I=W2B[m]Xk@6Ba]J2G[cRP0
 Z3 VDg1SIo80bB@j0V0VzS_@n1
 S1
-Z4 dC:/Users/stefa/downloads/fhV/hardwareDescriptionLanguage/FHV_WT21_HDL/assignment/cpu/sim
-w1637358931
-8../src/instr_demux.sv
-F../src/instr_demux.sv
-!i122 64
-L0 8 66
-Z5 OV;L;2020.1;71
+Z4 dC:/Users/stefa/downloads/hdL/fHV_WT21_HDL/assignment/cpu/sim
+Z5 w1637096216
+8../src/alu.sv
+F../src/alu.sv
+!i122 93
+L0 8 92
+Z6 OV;L;2020.1;71
 r1
 !s85 0
 31
-!s108 1637404628.000000
+!s108 1637445528.000000
+!s107 ../src/alu.sv|
+!s90 -reportprogress|300|../src/alu.sv|
+!i113 1
+Z7 tCvgOpt 0
+vcpu
+R0
+R1
+!i10b 1
+!s100 oJF2fb6nFl=A`PhM5kT=g0
+R2
+ILh[b`@giWTcKLg:li0EB12
+R3
+S1
+R4
+w1637445434
+8../src/cpu.sv
+F../src/cpu.sv
+!i122 94
+L0 8 136
+R6
+r1
+!s85 0
+31
+Z8 !s108 1637445529.000000
+!s107 ../src/cpu.sv|
+!s90 -reportprogress|300|../src/cpu.sv|
+!i113 1
+R7
+vdreg
+R0
+R1
+!i10b 1
+!s100 d>WIFFA4X_JMX:z6eh<l=3
+R2
+IUZHdP`96_N:80Dh6HSCOU0
+R3
+S1
+R4
+R5
+8../src/dreg.sv
+F../src/dreg.sv
+!i122 95
+L0 8 47
+R6
+r1
+!s85 0
+31
+R8
+!s107 ../src/dreg.sv|
+!s90 -reportprogress|300|../src/dreg.sv|
+!i113 1
+R7
+vinstr_demux
+R0
+R1
+!i10b 1
+!s100 na:SKDHN^P>jccJ;ekSmA2
+R2
+IV=H@TWn4IElC1O`o=aCHA1
+R3
+S1
+R4
+w1637418124
+8../src/instr_demux.sv
+F../src/instr_demux.sv
+!i122 96
+L0 8 66
+R6
+r1
+!s85 0
+31
+R8
 !s107 ../src/instr_demux.sv|
 !s90 -reportprogress|300|../src/instr_demux.sv|
 !i113 1
-Z6 tCvgOpt 0
-vtb_instr_demux
+R7
+vjump_ctrl
 R0
 R1
+!i10b 1
+!s100 hVRa=D6^6C>`MR9R1>ihF1
+R2
+I7X]oX<8DAbfS;^hY4]=K_0
+R3
+S1
+R4
+w1637426869
+8../src/jump_ctrl.sv
+F../src/jump_ctrl.sv
+!i122 97
+L0 8 83
+R6
+r1
+!s85 0
+31
+R8
+!s107 ../src/jump_ctrl.sv|
+!s90 -reportprogress|300|../src/jump_ctrl.sv|
+!i113 1
+R7
+vpcount
+R0
+R1
+!i10b 1
+!s100 gm6=9ODDY]6?XD^8Ha3eA3
+R2
+IZ3SGdV_a5lnUT:hMQX@5P2
+R3
+S1
+R4
+R5
+8../src/pcount.sv
+F../src/pcount.sv
+!i122 98
+L0 8 50
+R6
+r1
+!s85 0
+31
+R8
+!s107 ../src/pcount.sv|
+!s90 -reportprogress|300|../src/pcount.sv|
+!i113 1
+R7
+vtb_cpu
+R0
+!s110 1637445530
+!i10b 1
+!s100 n4:]QTE<ECQd06`6eAMiJ3
+R2
+IUbb<FjQZnnRR^gOeQ?M3<1
+R3
+S1
+R4
+w1637445521
+8tb_cpu.sv
+Ftb_cpu.sv
+!i122 99
+L0 8 151
+R6
+r1
+!s85 0
+31
+!s108 1637445530.000000
+!s107 tb_cpu.sv|
+!s90 -reportprogress|300|tb_cpu.sv|
+!i113 1
+R7
+vtb_instr_demux
+R0
+!s110 1637404629
 !i10b 1
 !s100 fP@KHbTJ50JGOh<j^oEzl1
 R2
 I?TL[67@j:^T72NH4gJ`Vl2
 R3
 S1
-R4
+dC:/Users/stefa/downloads/fhV/hardwareDescriptionLanguage/FHV_WT21_HDL/assignment/cpu/sim
 w1637359295
 8tb_instr_demux.sv
 Ftb_instr_demux.sv
 !i122 65
 L0 8 144
-R5
+R6
 r1
 !s85 0
 31
@@ -56,4 +200,4 @@ r1
 !s107 tb_instr_demux.sv|
 !s90 -reportprogress|300|tb_instr_demux.sv|
 !i113 1
-R6
+R7

@@ -98,7 +98,7 @@ module tb_instr_demux
     initial begin
 
         $display("***************************************************************************");
-        $display("Welcome to the testbench for an instruction demultiplexer (instr_demux)");
+        $display("Welcome to the testbench for an instruction demultiplexer (tb_instr_demux)");
 
         // Check the A-Instruction
         $display("------------------------------------------------------");
@@ -143,7 +143,7 @@ module tb_instr_demux
         $display("------------------------------------------------------");
         $display("Errors occoured during the testing: %d", error_cnt);
         $display("------------------------------------------------------");
-        $display("Testbench for the instruction demultiplexer finished (instr_demux)");
+        $display("Testbench for the instruction demultiplexer finished (tb_instr_demux)");
         $display("***************************************************************************");
     end
 
