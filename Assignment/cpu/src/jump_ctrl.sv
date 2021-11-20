@@ -10,8 +10,8 @@ module jump_ctrl
     input logic cmd_j1,
     input logic cmd_j2,
     input logic cmd_j3, 
-    input logic alu_zr,
-    input logic alu_ng,
+    input logic zr,
+    input logic ng,
 
     output logic pc_load,
     output logic pc_inc
@@ -24,11 +24,15 @@ module jump_ctrl
 
     // Implement a combinatorial logic for the jump controller
     always_comb begin : jump_control
+        // Default condition will be the incrementation of the programm counter
+        // Use default statements - no else statement needed inside the cases
+        pc_load = 1'b0;
+        pc_inc  = 1'b1;
+
         case (jBus) 
             // NULL - do not jump
             3'b000 : begin
-                pc_load = 1'b0;
-                pc_inc  = 1'b1;
+                // Use the default definition
             end
             // Jump Greater Than (>0)  -->  ALU-output is not zero and not negative
             3'b001 : begin
@@ -46,7 +50,7 @@ module jump_ctrl
             end
             // Jump Greater Equal (>=0)  -->  ALU-output is zero or greater and not null
             3'b011 : begin
-                if(zr | ~ng) begin
+                if(~ng) begin
                     pc_load = 1'b1;
                     pc_inc  = 1'b0;
                 end
@@ -60,7 +64,7 @@ module jump_ctrl
             end
             // Jump Not Equal (!=0)  -->  ALU-output is not zero and could be negative
             3'b101 :  begin
-                if(~zr | ng) begin
+                if(~zr) begin
                     pc_load = 1'b1;
                     pc_inc  = 1'b0;
                 end
@@ -72,10 +76,13 @@ module jump_ctrl
                     pc_inc  = 1'b0;
                 end
             end
-            // Jump
+            // Jump  -->  always jump
             3'b111 : begin
                 pc_load = 1'b1;
                 pc_inc  = 1'b0;
+            end
+            default : begin
+                // Default is set before the case
             end
         endcase
     end
