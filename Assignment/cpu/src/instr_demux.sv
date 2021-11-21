@@ -37,7 +37,7 @@ module instr_demux
         instr_v         = instr;
 
         if(instr_type == 1'b0) begin
-            instr_v[DW-1]   = 1'b0;
+            instr_type      = 1'b0;
             cmd_a           = 1'b0;
             cmd_c1          = 1'b0;
             cmd_c2          = 1'b0;
@@ -53,7 +53,7 @@ module instr_demux
             cmd_j3          = 1'b0;
         end 
         else if(instr_type == 1'b1) begin
-            //instr_v[DW-1]   = 1'b0;
+            instr_type      = 1'b0;
             cmd_a           = instr[DW-4];
             cmd_c1          = instr[DW-5];
             cmd_c2          = instr[DW-6];

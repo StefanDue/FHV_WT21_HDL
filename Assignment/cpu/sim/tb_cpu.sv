@@ -105,8 +105,8 @@ function int check_pc (logic [PWTB-1:0] pc, logic [PWTB-1:0] expected_pc, int er
     errorCount = error_cnt;
     assert(pc == expected_pc) begin
         $display("Output pc equals the expected");
-        $display("Expected pc: %h = %b", expected_addressM, expected_addressM);
-        $display("pc:          %h = %b", addressM, addressM);
+        $display("Expected pc: %h = %b", expected_pc, expected_pc);
+        $display("pc:          %h = %b", pc, pc);
     end
     else begin
         $error("Output pc does not equal the expected");
@@ -137,7 +137,7 @@ initial begin
     $display("Check the A-instruction - constant MAX_CONST");
     instr   = `MAX_CONST;
     inM     = 16'h1FFF;
-    #50m;
+    #50ns;
     error_cnt = check_pc(pc, 16'h0000, error_cnt);
     #100ns;
 

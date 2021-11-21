@@ -4,7 +4,7 @@ vmap work work
 
 # Compile the design file
 # Must always be a file
-vlog ../src/alu.sv
+vlog ../src/alu.sv 
 vlog ../src/cpu.sv
 vlog ../src/dreg.sv
 vlog ../src/instr_demux.sv
