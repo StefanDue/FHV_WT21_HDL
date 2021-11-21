@@ -134,10 +134,10 @@ initial begin
 
     // Check the A-Instruction
     $display("------------------------------------------------------");
-    $display("Check the A-instruction - constant MAX_CONST");
+    $display("+++++ Check the A-instruction - constant MAX_CONST +++++");
+    @(negedge clk50m);
     instr   = `MAX_CONST;
-    inM     = 16'h1FFF;
-    #50ns;
+    @(negedge clk50m);
     error_cnt = check_pc(pc, 16'h0000, error_cnt);
     #100ns;
 
