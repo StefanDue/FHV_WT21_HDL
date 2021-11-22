@@ -26,6 +26,7 @@ module uart_rx
 // --- localparameters ---
 localparam WIDTHCNT_INIT    = ((FCLK / FBAUD) -1);
 localparam WIDTHCNT_WIDTH   = $clog2(WIDTHCNT_INIT);
+localparam SAMPLECNT_INIT   = WIDTHCNT_INIT / 2;
 
 
 // --- local signals ---
@@ -35,12 +36,14 @@ logic [WIDTHCNT_WIDTH-1:0]      widthcnt;
 logic                           bitcnt_inc;
 logic                           bitcnt_init;
 logic [2:0]                     bitcnt;
-logic                           rx_posedge;
+logic                           samplecnt_zero;
+logic                           samplecnt_init;
 logic                           widthcnt_sample;
+logic [SAMPLECNT_WIDTH-1:0]     samplecnt;
 
 
 // --- FSM ---
-enum logic [1:0] {IDLE, START, SMPL, DATA, STOP}    state, state_next;
+enum logic [2:0] {IDLE, START, SMPL, DATA, STOP}    state, state_next;
 
 
 always_ff @(negedge rst_n or posedge clk50m) begin : fsm_seq
@@ -54,19 +57,29 @@ end
 
 
 always_comb begin : fsm_comb
-
+    // Default values
+    state_next      = state;
+    rx_idle         = 1'b0;     // Flag is just one if idel state is present
+    widthcnt_load   = 1'b0;
+    bitcnt_init     = 1'b0;
    case(state)
         IDLE: begin
-            if(rx_posedge) begin
-                state_next = START;  
+            rx_idle = 1'b1;
+            if(posedge rx) begin
+                state_next = START;
+                widthcnt_load = 1'b1;  
             end
         end
         START: begin
+            rx_ready    = 1'b0;     // Cleared as soon as a new frame startes
             if(widthcnt_zero) begin
-                state_next = SMPL;
+                state_next      = SMPL;
+                widthcnt_load   = 1'b1;
+                bitcnt_init     = 1'b1;
             end
         end
         SMPL: begin
+            rx_data[bitcnt];
             if(widthcnt_sample) begin
                 state_next = DATA;
             end
@@ -74,14 +87,21 @@ always_comb begin : fsm_comb
         DATA: begin
             if((widthcnt_zero) && (bitcnt < 3'd7)) begin
                 state_next = SMPL;
+                widthcnt_load   = 1'b1;
+                bitcnt_inc      = 1'b1;
             end  
             else if((widthcnt_zero) && (bitcnt >= 3'd7)) begin
                 state_next = STOP;
+                widthcnt_load = 1'b1;
+            end
+            else if (widthcnt_sample == SAMPLECNT_INIT) begin
+                state_next = SMPL;
             end
         end
         STOP: begin
            if(widthcnt_zero) begin
                state_next = IDLE;
+               rx_ready = 1'b1;
            end
         end
         default: begin
@@ -119,6 +139,21 @@ always_ff @(negedge rst_n or posedge clk50m) begin : bitcnt_counter
     end
 end
 
+
+// --- SAMPLING counter ---
+assign samplecnt_init = widthcnt_init;
+always_ff @(negedge rst_n or posedge clk50m ) begin : samplecnt_counter
+    if(~rst_n) begin
+        samplecnt <= '0;
+    end
+    else if(samplecnt_init) begin
+        samplecnt <= SAMPLECNT_INIT;
+    end
+    else if(~samplecnt_zero) begin
+        samplecnt <= samplecnt - 1'b1;
+    end
+end
+assign samplecnt_zero = (samplecnt == )
 
 
 endmodule

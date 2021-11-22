@@ -8,7 +8,7 @@
 module cpu 
 #(
     parameter DW = 16,
-    parameter PW = 15, 
+    parameter PW = 14, 
     parameter AW = 15
 )
 (
@@ -73,9 +73,10 @@ assign outM         = alu_out;
 assign addressM     = a;
 assign m            = inM;
 assign instr_type   = instr[DW-1];
-assign a_pcount  = {a[PW-1], a[PW-2], a[PW-3], a[PW-4], a[PW-5], a[PW-6], a[PW-7], a[PW-8], a[PW-9], a[PW-10], a[PW-11], a[PW-12], a[PW-13], a[PW-14], a[PW-15]};
-assign a_address = {a[AW-1], a[AW-2], a[AW-3], a[AW-4], a[AW-5], a[AW-6], a[AW-7], a[AW-8], a[AW-9], a[AW-10], a[AW-11], a[AW-12], a[AW-13], a[AW-14], a[AW-15]}; 
-
+assign a_pcount  = {a[DW-3], a[DW-4], a[DW-5], a[DW-6], a[DW-7], a[DW-8], a[DW-9], a[DW-10], a[DW-11], a[DW-12], a[DW-13], a[DW-14], a[DW-15], a[DW-16]};
+assign a_address = {a[DW-2], a[DW-3], a[DW-4], a[DW-5], a[DW-6], a[DW-7], a[DW-8], a[DW-9], a[DW-10], a[DW-11], a[DW-12], a[DW-13], a[DW-14], a[DW-15], a[DW-16]}; 
+//assign a_pcount = a;
+//assign a_address = a;
 
 
 // *** Wiring the components all together to get a CPU ***

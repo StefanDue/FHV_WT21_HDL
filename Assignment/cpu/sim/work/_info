@@ -11,7 +11,7 @@ cModel Technology
 dC:/Users/stefa/downloads/fhV/hardwareDescriptionLanguage/fHV_WT21_HDL/assignment/cpu/sim
 valu
 Z0 DXx6 sv_std 3 std 0 22 VYECXdT12H8WgbUP_5Y6:3
-Z1 !s110 1637516053
+Z1 !s110 1637619175
 !i10b 1
 !s100 X^SOM3WdB[Io@DYHg<97;1
 Z2 !s11b Dg1SIo80bB@j0V0VzS_@n1
@@ -22,13 +22,13 @@ Z4 dC:/Users/stefa/downloads/hdL/fHV_WT21_HDL/assignment/cpu/sim
 Z5 w1637096216
 8../src/alu.sv
 F../src/alu.sv
-!i122 214
+!i122 397
 L0 8 92
 Z6 OV;L;2020.1;71
 r1
 !s85 0
 31
-Z7 !s108 1637516053.000000
+Z7 !s108 1637619175.000000
 !s107 ../src/alu.sv|
 !s90 -reportprogress|300|../src/alu.sv|
 !i113 1
@@ -37,17 +37,17 @@ vcpu
 R0
 R1
 !i10b 1
-!s100 z`TE4=dED3:=[U`CH1kek0
+!s100 NLJ`42O<fb:II0AINec2^3
 R2
-IcOC@HIhj@8>C1zDcMhnPa2
+IoiWd30aJI=HmQIcS67`D11
 R3
 S1
 R4
-w1637515964
+w1637617103
 8../src/cpu.sv
 F../src/cpu.sv
-!i122 215
-L0 8 165
+!i122 398
+L0 8 166
 R6
 r1
 !s85 0
@@ -59,7 +59,7 @@ R7
 R8
 vdreg
 R0
-R1
+Z9 !s110 1637619176
 !i10b 1
 !s100 d>WIFFA4X_JMX:z6eh<l=3
 R2
@@ -70,7 +70,7 @@ R4
 R5
 8../src/dreg.sv
 F../src/dreg.sv
-!i122 216
+!i122 399
 L0 8 47
 R6
 r1
@@ -83,31 +83,31 @@ R7
 R8
 vinstr_demux
 R0
-R1
+R9
 !i10b 1
-!s100 jZ>nN4jz]S7;75fTS]J><1
+!s100 EiW`j0>UEFI]H1HfmJ29`1
 R2
-I1aJHahJeoXz:mT]Z^BOSk3
+IgU94e>h^DMjZTLA7Z3JFc2
 R3
 S1
 R4
-w1637496315
+w1637617032
 8../src/instr_demux.sv
 F../src/instr_demux.sv
-!i122 217
+!i122 400
 L0 8 66
 R6
 r1
 !s85 0
 31
-R7
+Z10 !s108 1637619176.000000
 !s107 ../src/instr_demux.sv|
 !s90 -reportprogress|300|../src/instr_demux.sv|
 !i113 1
 R8
 vjump_ctrl
 R0
-Z9 !s110 1637516054
+R9
 !i10b 1
 !s100 hVRa=D6^6C>`MR9R1>ihF1
 R2
@@ -118,13 +118,13 @@ R4
 w1637426869
 8../src/jump_ctrl.sv
 F../src/jump_ctrl.sv
-!i122 218
+!i122 401
 L0 8 83
 R6
 r1
 !s85 0
 31
-R7
+R10
 !s107 ../src/jump_ctrl.sv|
 !s90 -reportprogress|300|../src/jump_ctrl.sv|
 !i113 1
@@ -142,32 +142,32 @@ R4
 R5
 8../src/pcount.sv
 F../src/pcount.sv
-!i122 219
+!i122 402
 L0 8 50
 R6
 r1
 !s85 0
 31
-Z10 !s108 1637516054.000000
+R10
 !s107 ../src/pcount.sv|
 !s90 -reportprogress|300|../src/pcount.sv|
 !i113 1
 R8
 vtb_cpu
 R0
-R9
+!s110 1637619177
 !i10b 1
-!s100 X0W=9I21@OYZ0i0?@=zYi1
+!s100 J]zS[<O@0OD7XDknYEK?02
 R2
-IRSGOJbF3Ch:PW86mFF87`3
+IAQC;1YognjUb04KOK9lKb3
 R3
 S1
 R4
-w1637495057
+w1637619170
 8tb_cpu.sv
 Ftb_cpu.sv
-!i122 220
-L0 8 151
+!i122 403
+L0 8 168
 R6
 r1
 !s85 0
@@ -179,7 +179,7 @@ R10
 R8
 vtb_instr_demux
 R0
-!s110 1637515971
+!s110 1637617608
 !i10b 1
 !s100 _Mf;B59FT`nGb<`Y>5[id3
 R2
@@ -190,13 +190,13 @@ R4
 w1637451365
 8tb_instr_demux.sv
 Ftb_instr_demux.sv
-!i122 213
+!i122 320
 L0 8 144
 R6
 r1
 !s85 0
 31
-!s108 1637515971.000000
+!s108 1637617608.000000
 !s107 tb_instr_demux.sv|
 !s90 -reportprogress|300|tb_instr_demux.sv|
 !i113 1
