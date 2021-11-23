@@ -36,10 +36,11 @@ logic [WIDTHCNT_WIDTH-1:0]      widthcnt;
 logic                           bitcnt_inc;
 logic                           bitcnt_init;
 logic [2:0]                     bitcnt;
-logic                           samplecnt_zero;
-logic                           samplecnt_init;
 logic                           widthcnt_sample;
 logic [SAMPLECNT_WIDTH-1:0]     samplecnt;
+
+logic                           receive_ready;
+logic                           receive_error;
 
 
 // --- FSM ---
@@ -71,7 +72,8 @@ always_comb begin : fsm_comb
             end
         end
         START: begin
-            rx_ready    = 1'b0;     // Cleared as soon as a new frame startes
+            receive_error    = 1'b0;     // Cleared as soon as a new frame startes
+            receive_ready    = 1'b0;     // Cleared as soon as a new frame startes
             if(widthcnt_zero) begin
                 state_next      = SMPL;
                 widthcnt_load   = 1'b1;
@@ -86,22 +88,25 @@ always_comb begin : fsm_comb
         end
         DATA: begin
             if((widthcnt_zero) && (bitcnt < 3'd7)) begin
-                state_next = SMPL;
+                state_next      = SMPL;
                 widthcnt_load   = 1'b1;
                 bitcnt_inc      = 1'b1;
             end  
             else if((widthcnt_zero) && (bitcnt >= 3'd7)) begin
-                state_next = STOP;
-                widthcnt_load = 1'b1;
+                state_next      = STOP;
+                widthcnt_load   = 1'b1;
             end
             else if (widthcnt_sample == SAMPLECNT_INIT) begin
-                state_next = SMPL;
+                state_next      = SMPL;
             end
         end
         STOP: begin
+            if((rx == 1'b0) && ()) begin
+                receive_error   = 1'b1;
+            end
            if(widthcnt_zero) begin
-               state_next = IDLE;
-               rx_ready = 1'b1;
+               state_next       = IDLE;
+               receive_ready    = 1'b1;
            end
         end
         default: begin
@@ -140,20 +145,32 @@ always_ff @(negedge rst_n or posedge clk50m) begin : bitcnt_counter
 end
 
 
-// --- SAMPLING counter ---
-assign samplecnt_init = widthcnt_init;
-always_ff @(negedge rst_n or posedge clk50m ) begin : samplecnt_counter
-    if(~rst_n) begin
-        samplecnt <= '0;
+// --- FF to save flag rx_ready ---
+always_ff @(negedge rst_n or posedge clk50m) begin : rx_ready_flag
+    if(~rst_n || ~receive_ready) begin
+        rx_ready <= 1'b0;
     end
-    else if(samplecnt_init) begin
-        samplecnt <= SAMPLECNT_INIT;
+    else if(receive_ready) begin
+        rx_ready <= 1'b1;
     end
-    else if(~samplecnt_zero) begin
-        samplecnt <= samplecnt - 1'b1;
+    else begin
+        rx_ready <= rx_ready;
     end
 end
-assign samplecnt_zero = (samplecnt == )
+
+
+// --- FF to save flag rx_error ---
+always_ff @(negedge rst_n or posedge clk50m) begin : rx_error_flag
+    if(~rst_n || ~receive_error) begin
+        rx_error <= 1'b0;
+    end
+    else if(receive_error) begin
+        rx_error <= 1'b1;
+    end
+    else begin
+        rx_error <= rx_error;
+    end
+end
 
 
 endmodule
