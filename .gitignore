@@ -1,2 +1,6 @@
 .zip
 .7z
+**/work
+*.wlf
+*.ini
+log.txt
