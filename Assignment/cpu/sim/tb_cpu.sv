@@ -112,10 +112,15 @@ end
 
 
 initial begin
+    // Initialize the registers
+    rst_n = 1'b0;
+    #100ns;
+    @(negedge clk50m);
+    rst_n = 1'b1;
+
     $display("***************************************************************************");
     $display("Welcome to the testbench for a CPU (tb_cpu)");
 
-    // Check the A-Instruction
     $display("------------------------------------------------------");
     $display("------------------------------------------------------");
     $display("+++ Check the A-instruction +++");
@@ -125,9 +130,10 @@ initial begin
     instr   = `MAX_CONST;
     @(negedge clk50m);
     error_cnt = check_writeM(writeM, 1'b0, error_cnt);
-    error_cnt = check_outM(outM, 16'h7fff,error_cnt);
+    $display("A-instructions do not affect the ALU and so outM has to be 0x0000");
+    error_cnt = check_outM(outM, 16'h0000,error_cnt);
     error_cnt = check_addressM(addressM, 15'b111111111111111, error_cnt);
-    #100ns;
+  
 
     $display("------------------------------------------------------");
     $display("Check for the constant ZERO - @0");
@@ -135,9 +141,10 @@ initial begin
     instr   = `MIN_CONST;
     @(negedge clk50m);
     error_cnt = check_writeM(writeM, 1'b0, error_cnt);
+    $display("A-instructions do not affect the ALU and so outM has to be 0x0000");
     error_cnt = check_outM(outM, 16'h0000,error_cnt);
     error_cnt = check_addressM(addressM, 15'b000000000000000, error_cnt);
-    #100ns;
+   
 
     $display("------------------------------------------------------");
     $display("------------------------------------------------------");
@@ -145,32 +152,35 @@ initial begin
     $display("------------------------------------------------------");
     $display("Checkt the function D = 1");
     @(negedge clk50m);
-    instr   = 16'b1110111111010000;
+    instr   = `D_EQUALS_ONE;
     @(negedge clk50m);
     error_cnt = check_writeM(writeM, 1'b0, error_cnt);
     error_cnt = check_outM(outM, 16'h0001,error_cnt);
+    $display("C-instructions do not affect the A-register and so addressM must be 0x0000");
     error_cnt = check_addressM(addressM, 15'b000000000000000, error_cnt);
-    #100ns;
+   
 
     $display("------------------------------------------------------");
     $display("Checkt the function D = D + A");
     @(negedge clk50m);
-    instr   = 16'b1110000010010000;
+    instr   = `D_AND_A_STORE_D;
     @(negedge clk50m);
     error_cnt = check_writeM(writeM, 1'b0, error_cnt);
     error_cnt = check_outM(outM, 16'h0001,error_cnt);
+    $display("C-instructions do not affect the A-register and so addressM must be 0x0000");
     error_cnt = check_addressM(addressM, 15'b000000000000000, error_cnt);
-    #100ns;
+    
 
     $display("------------------------------------------------------");
     $display("Checkt the function M = A + 1");
     @(negedge clk50m);
-    instr   = 16'b1110110111001000;
+    instr   = `INC_A_STORE_M;
     @(negedge clk50m);
     error_cnt = check_writeM(writeM, 1'b1, error_cnt);
     error_cnt = check_outM(outM, 16'h0001,error_cnt);
+    $display("C-instructions do not affect the A-register and so addressM must be 0x0000");
     error_cnt = check_addressM(addressM, 15'b000000000000000, error_cnt);
-    #100ns;
+
 
     run_sim = 1'b0;
     $display("------------------------------------------------------");

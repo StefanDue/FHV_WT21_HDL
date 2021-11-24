@@ -7,17 +7,18 @@
 
 module uart_tx
     #(
-        parameter FCLK = 50000000,
-        parameter BAUD = 115200
+        parameter WIDTH = 8;
+        parameter FCLK  = 50000000,
+        parameter BAUD  = 115200
     )
     (
-        input  logic            rst_n_i,
-        input  logic            clk_i,
-        input  logic [7:0]      data_i,
-        input  logic            tx_start_i,
+        input  logic                rst_n_i,
+        input  logic                clk_i,
+        input  logic [WIDTH-1:0]    data_i,
+        input  logic                tx_start_i,
 
-        output logic            tx_o,
-        output logic            idle_o
+        output logic                tx_o,
+        output logic                idle_o
     );
 
     // --- localparams ---

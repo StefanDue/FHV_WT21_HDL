@@ -6,8 +6,13 @@ add wave -noupdate -radix binary -childformat {{{/tb_cpu/addressM[14]} -radix he
 add wave -noupdate -radix binary /tb_cpu/pc
 add wave -noupdate /tb_cpu/clk50m
 add wave -noupdate /tb_cpu/writeM
+add wave -noupdate /tb_cpu/dut/dload
+add wave -noupdate /tb_cpu/dut/alu_out
+add wave -noupdate /tb_cpu/dut/d
+add wave -noupdate /tb_cpu/dut/y
+add wave -noupdate /tb_cpu/dut/a
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {239286 ps} 0}
+WaveRestoreCursors {{Cursor 1} {73545 ps} 0}
 quietly wave cursor active 1
 configure wave -namecolwidth 150
 configure wave -valuecolwidth 100
@@ -23,4 +28,4 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits ps
 update
-WaveRestoreZoom {0 ps} {651 ns}
+WaveRestoreZoom {0 ps} {325500 ps}
