@@ -11,7 +11,7 @@ cModel Technology
 dC:/Users/stefa/downloads/fhV/hardwareDescriptionLanguage/fHV_WT21_HDL/assignment/cpu/sim
 valu
 Z0 DXx6 sv_std 3 std 0 22 VYECXdT12H8WgbUP_5Y6:3
-Z1 !s110 1637775942
+Z1 !s110 1637777164
 !i10b 1
 !s100 X^SOM3WdB[Io@DYHg<97;1
 Z2 !s11b Dg1SIo80bB@j0V0VzS_@n1
@@ -22,17 +22,17 @@ Z4 dC:/Users/stefa/Downloads/HDL/FHV_WT21_HDL/Assignment/cpu/sim
 Z5 w1637096216
 8../src/alu.sv
 F../src/alu.sv
-!i122 691
+!i122 698
 L0 8 92
 Z6 OV;L;2020.1;71
 r1
 !s85 0
 31
-!s108 1637775941.000000
+Z7 !s108 1637777164.000000
 !s107 ../src/alu.sv|
 !s90 -reportprogress|300|../src/alu.sv|
 !i113 1
-Z7 tCvgOpt 0
+Z8 tCvgOpt 0
 vcpu
 R0
 R1
@@ -46,17 +46,17 @@ R4
 w1637694322
 8../src/cpu.sv
 F../src/cpu.sv
-!i122 692
+!i122 699
 L0 8 166
 R6
 r1
 !s85 0
 31
-Z8 !s108 1637775942.000000
+R7
 !s107 ../src/cpu.sv|
 !s90 -reportprogress|300|../src/cpu.sv|
 !i113 1
-R7
+R8
 vdreg
 R0
 R1
@@ -70,20 +70,20 @@ R4
 R5
 8../src/dreg.sv
 F../src/dreg.sv
-!i122 693
+!i122 700
 L0 8 47
 R6
 r1
 !s85 0
 31
-R8
+R7
 !s107 ../src/dreg.sv|
 !s90 -reportprogress|300|../src/dreg.sv|
 !i113 1
-R7
+R8
 vinstr_demux
 R0
-Z9 !s110 1637775943
+Z9 !s110 1637777165
 !i10b 1
 !s100 EiW`j0>UEFI]H1HfmJ29`1
 R2
@@ -94,17 +94,17 @@ R4
 w1637617032
 8../src/instr_demux.sv
 F../src/instr_demux.sv
-!i122 694
+!i122 701
 L0 8 66
 R6
 r1
 !s85 0
 31
-R8
+R7
 !s107 ../src/instr_demux.sv|
 !s90 -reportprogress|300|../src/instr_demux.sv|
 !i113 1
-R7
+R8
 vjump_ctrl
 R0
 R9
@@ -118,17 +118,17 @@ R4
 w1637426869
 8../src/jump_ctrl.sv
 F../src/jump_ctrl.sv
-!i122 695
+!i122 702
 L0 8 83
 R6
 r1
 !s85 0
 31
-Z10 !s108 1637775943.000000
+Z10 !s108 1637777165.000000
 !s107 ../src/jump_ctrl.sv|
 !s90 -reportprogress|300|../src/jump_ctrl.sv|
 !i113 1
-R7
+R8
 vpcount
 R0
 R9
@@ -142,7 +142,7 @@ R4
 R5
 8../src/pcount.sv
 F../src/pcount.sv
-!i122 696
+!i122 703
 L0 8 50
 R6
 r1
@@ -152,7 +152,7 @@ R10
 !s107 ../src/pcount.sv|
 !s90 -reportprogress|300|../src/pcount.sv|
 !i113 1
-R7
+R8
 vtb_cpu
 R0
 R9
@@ -163,10 +163,10 @@ IAB]]mnd@G`EbCBoG;D>QU1
 R3
 S1
 R4
-w1637775933
+w1637776982
 8tb_cpu.sv
 Ftb_cpu.sv
-!i122 697
+!i122 704
 L0 8 187
 R6
 r1
@@ -176,7 +176,7 @@ R10
 !s107 tb_cpu.sv|
 !s90 -reportprogress|300|tb_cpu.sv|
 !i113 1
-R7
+R8
 vtb_instr_demux
 R0
 !s110 1637696297
@@ -200,4 +200,4 @@ r1
 !s107 tb_instr_demux.sv|
 !s90 -reportprogress|300|tb_instr_demux.sv|
 !i113 1
-R7
+R8

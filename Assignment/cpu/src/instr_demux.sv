@@ -2,7 +2,7 @@
 // Project  : EDB HDL WS2021 - Fourth Assignment
 // Purpose  : Implementation of a demultiplexer for a CPU
 // Author   : SteDun
-// Version  : V1.0 2021-11-26
+// Version  : V1.0 2021-11-24
 //-----------------------------------------------------------
 
 module instr_demux

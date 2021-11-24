@@ -2,7 +2,7 @@
 // Project  : EDB HDL WS2021 - Fourth Assignment
 // Purpose  : Implementation of a demultiplexer for a CPU
 // Author   : SteDun
-// Version  : V1.0 2021-11-26
+// Version  : V1.0 2021-11-24
 //-----------------------------------------------------------
 
 module cpu 
@@ -75,8 +75,6 @@ assign m            = inM;
 assign instr_type   = instr[DW-1];
 assign a_pcount  = {a[DW-3], a[DW-4], a[DW-5], a[DW-6], a[DW-7], a[DW-8], a[DW-9], a[DW-10], a[DW-11], a[DW-12], a[DW-13], a[DW-14], a[DW-15], a[DW-16]};
 assign a_address = {a[DW-2], a[DW-3], a[DW-4], a[DW-5], a[DW-6], a[DW-7], a[DW-8], a[DW-9], a[DW-10], a[DW-11], a[DW-12], a[DW-13], a[DW-14], a[DW-15], a[DW-16]}; 
-//assign a_pcount = a;
-//assign a_address = a;
 
 
 // *** Wiring the components all together to get a CPU ***
