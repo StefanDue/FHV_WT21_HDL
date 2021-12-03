@@ -5,7 +5,7 @@
 set_global_assignment -name FAMILY "Cyclone V"
 set_global_assignment -name DEVICE 5CGXFC5C6F27C7
 set_global_assignment -name TOP_LEVEL_ENTITY "Toplevel_C5G_HEX4_UART"
-set_global_assignment -name ORIGINAL_QUARTUS_VERSION 14.0
+set_global_assignment -name ORIGINAL_QUARTUS_VERSION "14.0"
 set_global_assignment -name LAST_QUARTUS_VERSION "20.1.1 Lite Edition"
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "08:57:37 SEPTEMBER 25,2017"
 set_global_assignment -name DEVICE_FILTER_PACKAGE FBGA
@@ -17,7 +17,7 @@ set_global_assignment -name SDC_FILE Toplevel_C5G_HEX4_UART.SDC
 # CLOCK
 #============================================================
 set_location_assignment PIN_U12 -to CLOCK_125_p
-set_instance_assignment -name IO_STANDARD LVDS -to CLOCK_125_p
+set_instance_assignment -name IO_STANDARD "LVDS" -to CLOCK_125_p
 set_location_assignment PIN_R20 -to CLOCK_50_B5B
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to CLOCK_50_B5B
 set_location_assignment PIN_N20 -to CLOCK_50_B6A
@@ -179,3 +179,4 @@ set_instance_assignment -name IO_STANDARD "2.5 V" -to UART_RX
 
 
 set_global_assignment -name QIP_FILE ../ip/rom32k.qip
+set_global_assignment -name QIP_FILE ../ip/ram32k.qip

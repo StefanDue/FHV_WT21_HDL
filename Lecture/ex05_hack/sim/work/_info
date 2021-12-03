@@ -8,50 +8,190 @@ z2
 !i10e 25
 !i10f 100
 cModel Technology
-Z0 dC:/Users/stefa/downloads/fhV/hardwareDescriptionLanguage/fhV_WT21_HDL/lecture/ex05_hack/sim
-vrom32k
-Z1 !s110 1637321240
+Z0 dC:/Users/anm/OneDrive - FH Vorarlberg/Desktop/ex05_hack/sim
+vdata_mem
+Z1 DXx6 sv_std 3 std 0 22 VYECXdT12H8WgbUP_5Y6:3
+Z2 !s110 1638532222
 !i10b 1
-!s100 YiWXBY7PYOWQ6?HE;lX:D1
-Z2 !s11b Dg1SIo80bB@j0V0VzS_@n1
-I`=[<X[F8bDnV@1>M^2=In2
-Z3 VDg1SIo80bB@j0V0VzS_@n1
-R0
-w1637316501
-8../ip/rom32k.v
-F../ip/rom32k.v
-!i122 20
-L0 40 61
-Z4 OV;L;2020.1;71
+!s100 ^JWNUgbXZ[o:U2NZ:aXSe1
+Z3 !s11b Dg1SIo80bB@j0V0VzS_@n1
+I=kV<bD2IMig2j68O_K1Zh0
+Z4 VDg1SIo80bB@j0V0VzS_@n1
+S1
+Z5 dC:/Users/stefa/Downloads/ex05_hack/ex05_hack/sim
+w1638531353
+8../src/data_mem.sv
+F../src/data_mem.sv
+!i122 77
+L0 8 133
+Z6 OV;L;2020.1;71
 r1
 !s85 0
 31
-Z5 !s108 1637321240.000000
+Z7 !s108 1638532222.000000
+!s107 ../src/data_mem.sv|
+!s90 -reportprogress|300|../src/data_mem.sv|
+!i113 1
+Z8 tCvgOpt 0
+vmem_slice
+R1
+Z9 !s110 1638532223
+!i10b 1
+!s100 @BbNP_IAGmHhD^RU;:nb30
+R3
+IiokZWViGXlegY[03hj9[41
+R4
+S1
+R5
+w1638526587
+8../src/mem_slice.sv
+F../src/mem_slice.sv
+!i122 79
+L0 8 29
+R6
+r1
+!s85 0
+31
+R7
+!s107 ../src/mem_slice.sv|
+!s90 -reportprogress|300|../src/mem_slice.sv|
+!i113 1
+R8
+vram16k
+R2
+!i10b 1
+!s100 9jMzMaSK6haG_3<PPnad_0
+R3
+IPl_aC1Zbm>kAGzA_I2a510
+R4
+R5
+w1638531389
+8../ip/ram16k.v
+F../ip/ram16k.v
+!i122 78
+Z10 L0 40 65
+R6
+r1
+!s85 0
+31
+R7
+!s107 ../ip/ram16k.v|
+!s90 -reportprogress|300|../ip/ram16k.v|
+!i113 1
+R8
+vram32k
+!s110 1638526006
+!i10b 1
+!s100 F:LVAGQP?IfZ0bZSKHEW>1
+R3
+IOHOWB4cVi:J;_jYWmKkAN3
+R4
+R5
+w1638523582
+8../ip/ram32k.v
+F../ip/ram32k.v
+!i122 11
+R10
+R6
+r1
+!s85 0
+31
+!s108 1638526006.000000
+!s107 ../ip/ram32k.v|
+!s90 -reportprogress|300|../ip/ram32k.v|
+!i113 1
+R8
+vrom32k
+Z11 !s110 1637321022
+!i10b 1
+!s100 YiWXBY7PYOWQ6?HE;lX:D1
+R3
+I`=[<X[F8bDnV@1>M^2=In2
+R4
+R0
+w1637316500
+8../ip/rom32k.v
+F../ip/rom32k.v
+!i122 9
+L0 40 61
+R6
+r1
+!s85 0
+31
+Z12 !s108 1637321022.000000
 !s107 ../ip/rom32k.v|
 !s90 -reportprogress|300|../ip/rom32k.v|
 !i113 1
-Z6 tCvgOpt 0
-vtb_rom32k
-DXx6 sv_std 3 std 0 22 VYECXdT12H8WgbUP_5Y6:3
+R8
+vtb_data_mem
 R1
+R9
 !i10b 1
-!s100 ZaS2InW?lN1nfNo8d2omc1
-R2
-I8PfW@VT38gXKaeCYJJF6M2
+!s100 Qon<FV90_;6a>3M4mCgA_3
 R3
-S1
-R0
-w1637321233
-8tb_rom32k.sv
-Ftb_rom32k.sv
-!i122 21
-L0 11 40
+I^;LY8X1XR?L9DVYJ[T0EJ3
 R4
+S1
+R5
+w1638532154
+8tb_data_mem.sv
+Ftb_data_mem.sv
+!i122 80
+L0 9 82
+R6
 r1
 !s85 0
 31
+!s108 1638532223.000000
+!s107 tb_data_mem.sv|
+!s90 -reportprogress|300|tb_data_mem.sv|
+!i113 1
+R8
+vtb_mem_slice
+R1
+!s110 1638527200
+!i10b 1
+!s100 <SY^=;_bk0PSRU1_Q:^742
+R3
+I6mb2BH<oVCV@6VXCj3^Yn0
+R4
+S1
 R5
+w1638527193
+8tb_mem_slice.sv
+Ftb_mem_slice.sv
+!i122 25
+L0 8 76
+R6
+r1
+!s85 0
+31
+!s108 1638527200.000000
+!s107 tb_mem_slice.sv|
+!s90 -reportprogress|300|tb_mem_slice.sv|
+!i113 1
+R8
+vtb_rom32k
+R1
+R11
+!i10b 1
+!s100 ;X8JVe?e9iokLQGkF]gA_1
+R3
+IoO7djG8F6NiWSa89CbiMj3
+R4
+S1
+R0
+w1637320898
+8tb_rom32k.sv
+Ftb_rom32k.sv
+!i122 10
+L0 10 39
+R6
+r1
+!s85 0
+31
+R12
 !s107 tb_rom32k.sv|
 !s90 -reportprogress|300|tb_rom32k.sv|
 !i113 1
-R6
+R8
