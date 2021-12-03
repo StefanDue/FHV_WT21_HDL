@@ -45,6 +45,7 @@ logic                           receive_error;
 
 // --- FSM ---
 enum logic [2:0] {IDLE, START, SMPL, DATA, STOP}    state, state_next;
+assign widthcnt_sample = (withcnt == SAMPLECNT_INIT);
 
 
 always_ff @(negedge rst_n or posedge clk50m) begin : fsm_seq
@@ -62,6 +63,7 @@ always_comb begin : fsm_comb
     state_next      = state;
     rx_idle         = 1'b0;     // Flag is just one if idel state is present
     widthcnt_load   = 1'b0;
+    withcnt_init    = 1'b0;
     bitcnt_init     = 1'b0;
    case(state)
         IDLE: begin
@@ -81,9 +83,9 @@ always_comb begin : fsm_comb
             end
         end
         SMPL: begin
-            rx_data[bitcnt];
             if(widthcnt_sample) begin
                 state_next = DATA;
+                rx_data[bitcnt] = rx;
             end
         end
         DATA: begin
