@@ -37,7 +37,6 @@ logic                           bitcnt_inc;
 logic                           bitcnt_init;
 logic [2:0]                     bitcnt;
 logic                           widthcnt_sample;
-logic [SAMPLECNT_WIDTH-1:0]     samplecnt;
 
 logic                           receive_ready;
 logic                           receive_error;
@@ -45,7 +44,7 @@ logic                           receive_error;
 
 // --- FSM ---
 enum logic [2:0] {IDLE, START, SMPL, DATA, STOP}    state, state_next;
-assign widthcnt_sample = (withcnt == SAMPLECNT_INIT);
+assign widthcnt_sample = (widthcnt == SAMPLECNT_INIT);
 
 
 always_ff @(negedge rst_n or posedge clk50m) begin : fsm_seq
@@ -59,16 +58,15 @@ end
 
 
 always_comb begin : fsm_comb
-    // Default values
-    state_next      = state;
-    rx_idle         = 1'b0;     // Flag is just one if idel state is present
-    widthcnt_load   = 1'b0;
-    withcnt_init    = 1'b0;
-    bitcnt_init     = 1'b0;
+   // Default values
+   state_next      = state;
+   rx_idle         = 1'b0;     // Flag is just one if idel state is present
+   widthcnt_load   = 1'b0;
+   bitcnt_init     = 1'b0;
    case(state)
         IDLE: begin
             rx_idle = 1'b1;
-            if(posedge rx) begin
+            if(rx == 1'b1) begin
                 state_next = START;
                 widthcnt_load = 1'b1;  
             end
@@ -103,7 +101,7 @@ always_comb begin : fsm_comb
             end
         end
         STOP: begin
-            if((rx == 1'b0) && ()) begin
+            if(rx == 1'b0) begin
                 receive_error   = 1'b1;
             end
            if(widthcnt_zero) begin

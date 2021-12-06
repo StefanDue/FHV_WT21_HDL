@@ -7,7 +7,7 @@
 
 module uart_tx
     #(
-        parameter WIDTH = 8;
+        parameter WIDTH = 8,
         parameter FCLK  = 50000000,
         parameter BAUD  = 115200
     )

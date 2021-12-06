@@ -19,11 +19,12 @@ logic                   rst_n;
 logic                   clk50m;
 logic                   rx;
 logic [WIDTH_TB-1:0]    rx_data;
+logic                   rx_ready;
 logic                   rx_idle;
 logic                   rx_error;
 
 // Input and output parameters for the UART TX - just additional parameters
-logic [WIDTH_TB-1:0]    data;
+logic [WIDTH_TB-1:0]    tx_data;
 logic                   tx_start;
 logic                   tx;
 logic                   tx_idle;
@@ -36,7 +37,7 @@ uart_rx #(.WIDTH (WIDTH_TB), .FCLK (FCLK_TB), .FBAUD (FBAUD_TB)) uart_rx (.*);
 uart_tx #(.WIDTH (WIDTH_TB), .FCLK (FCLK_TB), .BAUD (FBAUD_TB)) uart_tx (
     .rst_n_i    (rst_n),
     .clk_i      (clk50m),
-    .data_i     (data),
+    .data_i     (tx_data),
     .tx_start_i (tx_start),
     .tx_o       (tx),
     .idle_o     (tx_idle)
@@ -56,6 +57,28 @@ initial begin
         #10ns;
         clk50m = ~clk50m;
     end
+end
+
+
+
+initial begin
+    $display("***************************************************************************");
+    $display("Welcome to the testbench for an UART Reseive (tb_uart_rx)");
+    rst_n = 1'b0;
+    tx_data = '0;
+    tx_start = 1'b0;
+    #90ns;
+
+    rst_n = 1'b1;
+
+
+    #100ns;
+    run_sim = 1'b0;
+    $display("------------------------------------------------------");
+    $display("Errors occoured during the testing: %d", error_cnt);
+    $display("------------------------------------------------------");
+    $display("Testbench for the UART Receive finished (tb_uart_rx)");
+    $display("***************************************************************************");    
 end
 
 
