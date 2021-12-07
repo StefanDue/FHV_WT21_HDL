@@ -47,8 +47,12 @@ uart_tx #(.WIDTH (WIDTH_TB), .FCLK (FCLK_TB), .BAUD (FBAUD_TB)) uart_tx (
 
 // (3) DUT stimulation
 // --- local paramter ---
-int error_cnt = 0;
-logic run_sim = 1'b1;
+int error_cnt           = 0;
+int bitwidth            = 0;
+logic run_sim           = 1'b1;
+logic rx_error_active   = 1'b0;
+logic error             = 1'b0;
+
 
 // Define the system clock for the testbench
 initial begin
@@ -59,11 +63,24 @@ initial begin
     end
 end
 
+// Check if an rx error is currently active
+always_comb begin : error_check
+    if(rx_error == 1'b1) begin
+        rx = error;
+    end
+    else begin
+        rx = tx;
+    end
+end
 
 
 initial begin
     $display("***************************************************************************");
     $display("Welcome to the testbench for an UART Reseive (tb_uart_rx)");
+
+    $display("------------------------------------------------------");
+    $display("------------------------------------------------------");
+    $display("Start with a reset");
     rst_n = 1'b0;
     tx_data = '0;
     tx_start = 1'b0;
@@ -71,8 +88,48 @@ initial begin
 
     rst_n = 1'b1;
 
-
+    // --- Send 0xA5 over UART TX to UART RX ---
+    $display("------------------------------------------------------");
+    $display("Check for the constant 0xA5");
+    @(negedge clk50m);
+    tx_data     = 8'hA5;
+    tx_start    = 1'b1;
     #100ns;
+    tx_start    = 1'b0;
+    @(posedge rx_idle);
+    #10us;
+
+    $display("------------------------------------------------------");
+    $display("Check for the constant 0x5A");
+    @(negedge clk50m);
+    tx_data     = 8'h5A;
+    tx_start    = 1'b1;
+    #100ns;
+    tx_start    = 1'b0;
+    @(posedge rx_idle);
+    #10us;
+
+    $display("------------------------------------------------------");
+    $display("Check for the constant 0xFF");
+    @(negedge clk50m);
+    tx_data     = 8'hFF;
+    tx_start    = 1'b1;
+    #100ns; 
+    tx_start    = 1'b0;
+    @(posedge rx_idle);
+    #10us;
+
+    $display("------------------------------------------------------");
+    $display("Check for the constant 0x00");
+    @(negedge clk50m);
+    tx_data     = 8'h00;
+    tx_start    = 1'b1;
+    #100ns;
+    tx_start    = 1'b0;
+    @(posedge rx_idle);
+    #10us;
+
+    #50us;
     run_sim = 1'b0;
     $display("------------------------------------------------------");
     $display("Errors occoured during the testing: %d", error_cnt);

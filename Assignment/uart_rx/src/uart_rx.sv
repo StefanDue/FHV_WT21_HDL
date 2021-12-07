@@ -57,64 +57,6 @@ always_ff @(negedge rst_n or posedge clk50m) begin : fsm_seq
 end
 
 
-always_comb begin : fsm_comb
-   // Default values
-   state_next      = state;
-   rx_idle         = 1'b0;     // Flag is just one if idel state is present
-   widthcnt_load   = 1'b0;
-   bitcnt_init     = 1'b0;
-   case(state)
-        IDLE: begin
-            rx_idle = 1'b1;
-            if(rx == 1'b1) begin
-                state_next = START;
-                widthcnt_load = 1'b1;  
-            end
-        end
-        START: begin
-            receive_error    = 1'b0;     // Cleared as soon as a new frame startes
-            receive_ready    = 1'b0;     // Cleared as soon as a new frame startes
-            if(widthcnt_zero) begin
-                state_next      = SMPL;
-                widthcnt_load   = 1'b1;
-                bitcnt_init     = 1'b1;
-            end
-        end
-        SMPL: begin
-            if(widthcnt_sample) begin
-                state_next = DATA;
-                rx_data[bitcnt] = rx;
-            end
-        end
-        DATA: begin
-            if((widthcnt_zero) && (bitcnt < 3'd7)) begin
-                state_next      = SMPL;
-                widthcnt_load   = 1'b1;
-                bitcnt_inc      = 1'b1;
-            end  
-            else if((widthcnt_zero) && (bitcnt >= 3'd7)) begin
-                state_next      = STOP;
-                widthcnt_load   = 1'b1;
-            end
-            else if (widthcnt_sample == SAMPLECNT_INIT) begin
-                state_next      = SMPL;
-            end
-        end
-        STOP: begin
-            if(rx == 1'b0) begin
-                receive_error   = 1'b1;
-            end
-           if(widthcnt_zero) begin
-               state_next       = IDLE;
-               receive_ready    = 1'b1;
-           end
-        end
-        default: begin
-            state_next = IDLE;
-        end
-   endcase 
-end
-
 
 // --- WIDTHCNT counter ---
 always_ff @(negedge rst_n or posedge clk50m) begin : widthcnt_counter
@@ -171,6 +113,69 @@ always_ff @(negedge rst_n or posedge clk50m) begin : rx_error_flag
         rx_error <= rx_error;
     end
 end
+
+
+
+always_comb begin : fsm_comb
+   // Default values
+   state_next      = state;
+   rx_idle         = 1'b0;     // Flag is just one if idel state is present
+   widthcnt_load   = 1'b0;
+   bitcnt_init     = 1'b0;
+   bitcnt_inc      = 1'b0;   
+   case(state)
+        IDLE: begin
+            rx_idle         = 1'b1;
+            if(rx == 1'b0) begin
+                state_next     = START;
+                receive_error  = '0;
+                widthcnt_load  = 1'b1;  
+            end
+        end
+        START: begin
+            receive_error    = 1'b0;     // Cleared as soon as a new frame startes
+            receive_ready    = 1'b0;     // Cleared as soon as a new frame startes
+            if(widthcnt_zero) begin
+                state_next      = SMPL;
+                widthcnt_load   = 1'b1;
+                bitcnt_init     = 1'b1;
+            end
+        end
+        SMPL: begin
+            if(widthcnt_sample) begin
+                state_next = DATA;
+                rx_data[bitcnt] = rx;
+            end
+        end
+        DATA: begin
+            if((widthcnt_zero) && (bitcnt < 3'd7)) begin
+                state_next      = SMPL;
+                widthcnt_load   = 1'b1;
+                bitcnt_inc      = 1'b1;
+            end  
+            else if((widthcnt_zero) && (bitcnt >= 3'd7)) begin
+                state_next      = STOP;
+                widthcnt_load   = 1'b1;
+            end
+            else if (widthcnt_sample == SAMPLECNT_INIT) begin
+                state_next      = SMPL;
+            end
+        end
+        STOP: begin
+            if(rx == 1'b0) begin
+                receive_error   = 1'b1;
+            end
+           if(widthcnt_zero) begin
+               state_next       = IDLE;
+               receive_ready    = 1'b1;
+           end
+        end
+        default: begin
+            state_next = IDLE;
+        end
+   endcase 
+end
+
 
 
 endmodule
