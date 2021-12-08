@@ -2,7 +2,7 @@
 // Project  : EDB HDL WS2021 - Fifth Assignment
 // Purpose  : Implement an UART receive (uart_rx)
 // Author   : SteDun
-// Version  : V1.0 2021-12-10
+// Version  : V1.0 2021-12-09
 //-------------------------------------------------------
 
 module uart_rx
@@ -55,7 +55,6 @@ always_ff @(negedge rst_n or posedge clk50m) begin : fsm_seq
         state <= state_next;
     end
 end
-
 
 
 // --- WIDTHCNT counter ---
@@ -176,7 +175,5 @@ always_comb begin : fsm_comb
         end
    endcase 
 end
-
-
 
 endmodule

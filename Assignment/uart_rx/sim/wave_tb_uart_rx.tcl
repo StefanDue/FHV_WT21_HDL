@@ -13,7 +13,7 @@ add wave -noupdate -format Analog-Step -height 74 -max 7.0 -radix unsigned /tb_u
 add wave -noupdate /tb_uart_rx/uart_tx/state
 add wave -noupdate /tb_uart_rx/uart_tx/state_next
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {291712619 ps} 0}
+WaveRestoreCursors {{Cursor 1} {240683661 ps} 0}
 quietly wave cursor active 1
 configure wave -namecolwidth 218
 configure wave -valuecolwidth 100
@@ -29,4 +29,4 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits ps
 update
-WaveRestoreZoom {0 ps} {603004500 ps}
+WaveRestoreZoom {0 ps} {694218 ns}

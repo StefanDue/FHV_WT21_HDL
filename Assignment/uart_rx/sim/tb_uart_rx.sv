@@ -2,7 +2,7 @@
 // Project  : EDB HDL WS2021 - Fifth Assignment
 // Purpose  : Implement a testbench for an UART receive (uart_rx)
 // Author   : SteDun
-// Version  : V1.0 2021-12-10
+// Version  : V1.0 2021-12-09
 //-------------------------------------------------------
 
 module tb_uart_rx 
@@ -99,28 +99,6 @@ function int check_uart_rx(int error_cnt, logic [WIDTH_TB-1:0] rx_data, logic [W
 endfunction
 
 
-// Function to check flags before receiving
-function int check_uart_rx_flag(int error_cnt, logic rx_ready, logic rx_idle, logic rx_error);
-    int errorCount;
-    errorCount = error_cnt;
-    assert((rx_ready == 1'b0) && (rx_idle == 1'b1) && (rx_error == 1'b0)) begin
-        $display("UART RX flags as expected");
-        $display("RX ready: %b", rx_ready);
-        $display("RX idle:  %b", rx_idle);
-        $display("RX error: %b", rx_error);
-    end
-    else begin
-        $error("UART RX flags are not as expected - unexpected flag status");
-        $display("RX ready: %b", rx_ready);
-        $display("RX idle:  %b", rx_idle);
-        $display("RX error: %b", rx_error);
-        errorCount++;
-    end
-    return errorCount;
-endfunction
-
-
-
 initial begin
     $display("***************************************************************************");
     $display("Welcome to the testbench for an UART Reseive (tb_uart_rx)");
@@ -144,8 +122,7 @@ initial begin
     tx_start    = 1'b1;
     #100ns;
     tx_start    = 1'b0;
-    //error_cnt = check_uart_rx_flag(rx_ready, rx_idle, rx_error);
-    @(posedge tx_idle);
+    @(posedge rx_idle);
     @(negedge clk50m);
     error_cnt = check_uart_rx(error_cnt, rx_data, tx_data, rx_ready, rx_idle, rx_error);
     #10us;
@@ -157,8 +134,7 @@ initial begin
     tx_start    = 1'b1;
     #100ns;
     tx_start    = 1'b0;
-    //error_cnt = check_uart_rx_flag(rx_ready, rx_idle, rx_error);
-    @(posedge tx_idle);
+    @(posedge rx_idle);
     @(negedge clk50m);
     error_cnt = check_uart_rx(error_cnt, rx_data, tx_data, rx_ready, rx_idle, rx_error);
     #10us;
@@ -170,9 +146,7 @@ initial begin
     tx_start    = 1'b1;
     #100ns; 
     tx_start    = 1'b0;
-    $display("%b %b %b", rx_ready, rx_idle, rx_error);
-    //error_cnt = check_uart_rx_flag(rx_ready, rx_idle, rx_error);
-    @(posedge tx_idle);
+    @(posedge rx_idle);
     @(negedge clk50m);
     error_cnt = check_uart_rx(error_cnt, rx_data, tx_data, rx_ready, rx_idle, rx_error);
     #10us;
@@ -184,8 +158,7 @@ initial begin
     tx_start    = 1'b1;
     #100ns;
     tx_start    = 1'b0;
-    //error_cnt = check_uart_rx_flag(rx_ready, rx_idle, rx_error);
-    @(posedge tx_idle);
+    @(posedge rx_idle);
     @(negedge clk50m);
     error_cnt = check_uart_rx(error_cnt, rx_data, tx_data, rx_ready, rx_idle, rx_error);
     #10us;
@@ -204,6 +177,20 @@ initial begin
     #1us;
     rx_error_active = 1'b0;
     @(posedge rx_idle);
+    @(negedge clk50m);
+    error_cnt = check_uart_rx(error_cnt, rx_data, tx_data, rx_ready, rx_idle, rx_error);
+    #10ns;
+
+    $display("------------------------------------------------------");
+    $display("Check if the fault is cleared when a new frame starts");
+    @(negedge clk50m);
+    tx_data     = 8'hFF;
+    tx_start    = 1'b1;
+    #100ns
+    tx_start    = 1'b0;
+    @(posedge rx_idle);
+    @(negedge clk50m);
+    error_cnt = check_uart_rx(error_cnt, rx_data, tx_data, rx_ready, rx_idle, rx_error);
 
 
     #50us;
