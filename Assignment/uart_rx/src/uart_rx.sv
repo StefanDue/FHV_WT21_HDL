@@ -126,6 +126,7 @@ always_comb begin : fsm_comb
    case(state)
         IDLE: begin
             rx_idle         = 1'b1;
+            bitcnt_init     = 1'b1;
             if(rx == 1'b0) begin
                 state_next     = START;
                 receive_error  = '0;

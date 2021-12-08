@@ -65,13 +65,60 @@ end
 
 // Check if an rx error is currently active
 always_comb begin : error_check
-    if(rx_error == 1'b1) begin
+    if(rx_error_active == 1'b1) begin
         rx = error;
     end
     else begin
         rx = tx;
     end
 end
+
+
+// Function to check the UART RX
+function int check_uart_rx(int error_cnt, logic [WIDTH_TB-1:0] rx_data, logic [WIDTH_TB-1:0] tx_data, logic rx_ready, logic rx_idle, logic rx_error);
+    int errorCount;
+    errorCount = error_cnt;
+    assert(rx_data == tx_data) begin
+        $display("Received UART message equals Sent UART message");
+        $display("UART RX: %h", rx_data);
+        $display("UART TX: %h", tx_data);
+        $display("Flag ready: %b", rx_ready);
+        $display("Flag error: %b", rx_error);
+        $display("Flag idle:  %b", rx_idle);
+    end
+    else begin
+        $error("Error during receiving UART message occured");
+        $display("UART RX: %h", rx_data);
+        $display("UART TX: %h", tx_data);
+        $display("Flag ready: %b", rx_ready);
+        $display("Flag error: %b", rx_error);
+        $display("Flag idle:  %b", rx_idle);
+        errorCount++;
+    end
+    return errorCount;
+endfunction
+
+
+// Function to check flags before receiving
+function int check_uart_rx_flag(int error_cnt, logic rx_ready, logic rx_idle, logic rx_error);
+    int errorCount;
+    errorCount = error_cnt;
+    assert((rx_ready == 1'b0) && (rx_idle == 1'b1) && (rx_error == 1'b0)) begin
+        $display("UART RX flags as expected");
+        $display("RX ready: %b", rx_ready);
+        $display("RX idle:  %b", rx_idle);
+        $display("RX error: %b", rx_error);
+    end
+    else begin
+        $error("UART RX flags are not as expected - unexpected flag status");
+        $display("RX ready: %b", rx_ready);
+        $display("RX idle:  %b", rx_idle);
+        $display("RX error: %b", rx_error);
+        errorCount++;
+    end
+    return errorCount;
+endfunction
+
 
 
 initial begin
@@ -87,47 +134,77 @@ initial begin
     #90ns;
 
     rst_n = 1'b1;
+    #50us;
 
     // --- Send 0xA5 over UART TX to UART RX ---
     $display("------------------------------------------------------");
-    $display("Check for the constant 0xA5");
+    $display("Check for 0xA5");
     @(negedge clk50m);
     tx_data     = 8'hA5;
     tx_start    = 1'b1;
     #100ns;
     tx_start    = 1'b0;
-    @(posedge rx_idle);
+    //error_cnt = check_uart_rx_flag(rx_ready, rx_idle, rx_error);
+    @(posedge tx_idle);
+    @(negedge clk50m);
+    error_cnt = check_uart_rx(error_cnt, rx_data, tx_data, rx_ready, rx_idle, rx_error);
     #10us;
 
     $display("------------------------------------------------------");
-    $display("Check for the constant 0x5A");
+    $display("Check for 0x5A");
     @(negedge clk50m);
     tx_data     = 8'h5A;
     tx_start    = 1'b1;
     #100ns;
     tx_start    = 1'b0;
-    @(posedge rx_idle);
+    //error_cnt = check_uart_rx_flag(rx_ready, rx_idle, rx_error);
+    @(posedge tx_idle);
+    @(negedge clk50m);
+    error_cnt = check_uart_rx(error_cnt, rx_data, tx_data, rx_ready, rx_idle, rx_error);
     #10us;
 
     $display("------------------------------------------------------");
-    $display("Check for the constant 0xFF");
+    $display("Check for 0x00");
     @(negedge clk50m);
-    tx_data     = 8'hFF;
+    tx_data     = 8'h00;
     tx_start    = 1'b1;
     #100ns; 
     tx_start    = 1'b0;
-    @(posedge rx_idle);
+    $display("%b %b %b", rx_ready, rx_idle, rx_error);
+    //error_cnt = check_uart_rx_flag(rx_ready, rx_idle, rx_error);
+    @(posedge tx_idle);
+    @(negedge clk50m);
+    error_cnt = check_uart_rx(error_cnt, rx_data, tx_data, rx_ready, rx_idle, rx_error);
     #10us;
 
     $display("------------------------------------------------------");
-    $display("Check for the constant 0x00");
+    $display("Check for 0xFF");
+    @(negedge clk50m);
+    tx_data     = 8'hFF;
+    tx_start    = 1'b1;
+    #100ns;
+    tx_start    = 1'b0;
+    //error_cnt = check_uart_rx_flag(rx_ready, rx_idle, rx_error);
+    @(posedge tx_idle);
+    @(negedge clk50m);
+    error_cnt = check_uart_rx(error_cnt, rx_data, tx_data, rx_ready, rx_idle, rx_error);
+    #10us;
+
+    $display("------------------------------------------------------");
+    $display("Check for a forced framing fault");
     @(negedge clk50m);
     tx_data     = 8'h00;
     tx_start    = 1'b1;
     #100ns;
     tx_start    = 1'b0;
+
+    #85us;
+    rx_error_active = 1'b1;
+    error = 1'b0;
+    #1us;
+    rx_error_active = 1'b0;
     @(posedge rx_idle);
-    #10us;
+
 
     #50us;
     run_sim = 1'b0;
