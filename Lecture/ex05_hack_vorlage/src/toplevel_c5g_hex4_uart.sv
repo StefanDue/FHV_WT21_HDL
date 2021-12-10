@@ -78,9 +78,10 @@ uc_u0
     .reg0x7402                  (reg0x7402)       //input reg 2
 );
 
+// inputs
 assign reg0x7400 = {8'h00, SW[7:0]};
 assign reg0x7401 = {14'd0, SW[9:8]};
-assign reg0x7402 = {12'd0, ~KEY};
+assign reg0x7402 = {12'd0, ~KEY};         //keys are active low - bitwise negation
 
 assign LEDG         = reg0x7000[ 7: 0];
 assign LEDR[7:0]    = reg0x7000[15: 8];
@@ -93,7 +94,7 @@ assign UART_TX      = 1'b0;
 
 sevenseg sevenseg_u0(
     .bin            (bin0),
-    .hex            (),
+    .hex            (),         //not used - therefore empty bracets
     .hexn           (HEX0)
 );
 sevenseg sevenseg_u1(
