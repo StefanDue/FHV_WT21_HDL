@@ -35,7 +35,7 @@ initial begin
     $display("###############################################");
     for(int i = 0; i < 16; i++) begin
         x_i = i;
-        #1ns;
+        #1ps;
         if((x_i == 4'b0100) || (x_i == 4'b1000) || (x_i == 4'b1010)) begin
             if(y_o == 1'b1) begin
                 y_test = 1'b1;
@@ -45,13 +45,13 @@ initial begin
             end
         end
 
-        assert(((~y_error) && (y_test == 1'b1)) || y_o == 1'b0) begin
+        if((~y_o) || (y_o && y_test)) begin
             $display("---------------------------");
             $display("Input:  %b", x_i);
             $display("Output: %b", y_o);
             $display("PASS");
         end
-        else begin
+        else if(y_error) begin
             $display("---------------------------");
             $display("Input:  %b", x_i);
             $display("Output: %b", y_o);

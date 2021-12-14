@@ -31,11 +31,12 @@ always_ff @(negedge rst_n or posedge clk2m) begin : fsm_door_seq
     end
     else begin
         state <= state_next;
+    end
 end
 
 // --- Combinatorial logic ---
 // finite state machine
-always_comb begin : fsm_door_comb
+always_comb begin : fsm_comb
     // default states
     state_next  = state;
     ml          = 1'b0;
@@ -56,17 +57,19 @@ always_comb begin : fsm_door_comb
             mr  = 1'b1;
             if(sense_up) begin
                 state_next = OPEN;
-                light_red  = 1'b0;
             end
             else if(key_down && mr && ~key_up) begin
                 state_next = DOWN;
             end
         end
         OPEN: begin
+            light_red = 1'b0;
             light_green = 1'b1;
-            if(key_down) begin
+            if(key_up) begin
+                state_next = OPEN;
+            end
+            if(key_down && ~key_up) begin
                 state_next  = DOWN;
-                light_green = 1'b0;
             end
         end
         DOWN: begin
@@ -79,6 +82,9 @@ always_comb begin : fsm_door_comb
             end
         end
         CLOSED: begin
+            if(key_down) begin
+                state_next = CLOSED;
+            end
             if(key_up) begin
                 state_next = UP;
             end
