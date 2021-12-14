@@ -30,7 +30,7 @@ initial begin
     $display("Welcome to the testbench for lut_1596");
     $display("===========================================");
 
-    for(int i = 0; i < 16; i = i + 1) begin
+    for(int i = 0; i < 16; i += 1) begin
         x = i;
         $display("-----------------------------------");
         $display("Input:  %b", x);
